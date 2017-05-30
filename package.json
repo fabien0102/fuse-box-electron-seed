@@ -5,7 +5,52 @@
     "main": "electron.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node fuse"
+        "start": "node fuse",
+        "build": "cross-env NODE_ENV=production node fuse",
+        "package": "npm run build && build --publish never",
+        "package:win": "npm run build && build --win --x64",
+        "package:linux": "npm run build && build --linux",
+        "package:all": "npm run build && build -mwl"
+    },
+    "build": {
+        "productName": "FuseBoxElectronSeed",
+        "appId": "org.fusebox.electron",
+        "files": [
+            "dist/",
+            "node_modules/",
+            "index.html",
+            "electron.js",
+            "package.json"
+        ],
+        "dmg": {
+            "contents": [
+                {
+                    "x": 130,
+                    "y": 220
+                },
+                {
+                    "x": 410,
+                    "y": 220,
+                    "type": "link",
+                    "path": "/Applications"
+                }
+            ]
+        },
+        "win": {
+            "target": [
+                "nsis"
+            ]
+        },
+        "linux": {
+            "target": [
+                "deb",
+                "AppImage"
+            ]
+        },
+        "directories": {
+            "buildResources": "resources",
+            "output": "release"
+        }
     },
     "repository": {
         "type": "git",
@@ -18,7 +63,9 @@
     },
     "homepage": "https://github.com/fuse-box/fuse-box-electron-seed#readme",
     "devDependencies": {
+        "cross-env": "^5.0.0",
         "electron": "^1.6.5",
+        "electron-builder": "^18.2.1",
         "fuse-box": "^2.0.0",
         "node-sass": "^4.5.2",
         "typescript": "^2.2.2"

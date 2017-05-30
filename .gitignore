@@ -12,6 +12,7 @@ pids
 lib-cov
 
 dist/
+release/
 # Coverage directory used by tools like istanbul
 coverage
 
