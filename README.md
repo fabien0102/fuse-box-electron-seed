@@ -11,9 +11,9 @@ What's inside:
 
 TODO:
 
-```
-update to 2.0.0 when released
-```
+- [ ] Fix package.json reading into build package
+- [ ] Add an icon placeholder
+- [ ] Add a README section for packaging
 
 ## Run
 
